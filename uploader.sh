@@ -4,11 +4,25 @@
 # 名称：KindleEar安装脚本
 # 作者：kindlefere.com
 # 页面：http://kindlefere.com/post/19.html
+# 更新：2017.02.09
 # ------------------------------------------
+
+cd ~
 
 if [ ! -d "./KindleEar" ]
 then
     git clone https://github.com/cdhigh/KindleEar.git
+else
+    response='y'
+    read -r -p '已存在 KindleEar 源码，是否更新？[y/N]' response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]
+    then
+        # rm -rf ./KindleEar
+        # git clone https://github.com/cdhigh/KindleEar.git
+        cd ./KindleEar
+        git pull ./KindleEar
+        cd ..
+    fi
 fi
 
 cd KindleEar
